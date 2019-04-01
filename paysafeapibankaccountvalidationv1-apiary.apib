@@ -162,9 +162,9 @@ The following request types are supported:
 |bankscheme         |enum                               |This is the bank scheme for which the merchant wants to validate the account.<br/>Possible values are:<ul><li>[ACH](#achbankaccountobject)</li><li>[EFT](#eftbankaccountobject)</li></ul>|
 |merchantRefNum     |string <br/>`length<=255`          |This is the merchant reference number created by the merchant and submitted as part of the request.|
 |accountTypes       |enum                               |This is the list of bank account types that will be presented. <br/>Possible values are:<ul><li>SAVING</li><li>CHEQUING</li>/ul>|
+|currencyCodes      |array                              |This is the currency of the bank accounts that will be presented.<br>Possible values are:<ul><li>CAD</li><li>USD</li></ul>|
 
 
-+ `accountTypes`:`[SAVING, CHEQUING]` (array) - This is the list of bank account types that will be presented. Possible values are: SAVING, CHEQUING
 + `currencyCodes`:`[CAD, USD]` (array) - This is the currency of the bank accounts that will be presented. Possible values are: CAD, USD
 + `returnLinks` (object, required) - This is the URL to which to redirect the customer. You can customize the return URL based on the transaction status. The 'default' value is mandatory.
     + `rel` (enum) - This is the link type, allowing different endpoints to be targeted depending on the end state of the transaction. The link relation describes how this link relates to the previous call. 
