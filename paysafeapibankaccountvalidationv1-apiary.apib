@@ -160,8 +160,38 @@ The following request types are supported:
 |---                |---                                |---            |
 |profile            |[profile](#profileobject)          |This is the some profile information about the customer.|
 |bankscheme         |enum                               |This is the bank scheme for which the merchant wants to validate the account.<br/>Possible values are:<ul><li>[ACH](#achbankaccountobject)</li><li>[EFT](#eftbankaccountobject)</li></ul>|
-|lastName           |string <br/>`length<=80`           |This is the customer’s last name. |
-|locale             |enum                               |This indicates the language of the user interface for the customer. <br/>Possible values are:<ul><li>en_CA - English</li><li>fr_CA - French</li></ul>|
+|merchantRefNum     |string <br/>`length<=255`          |This is the merchant reference number created by the merchant and submitted as part of the request.|
+|accountTypes       |enum                               |This is the list of bank account types that will be presented. <br/>Possible values are:<ul><li>SAVING</li><li>CHEQUING</li>/ul>|
+
+
++ `accountTypes`:`[SAVING, CHEQUING]` (array) - This is the list of bank account types that will be presented. Possible values are: SAVING, CHEQUING
++ `currencyCodes`:`[CAD, USD]` (array) - This is the currency of the bank accounts that will be presented. Possible values are: CAD, USD
++ `returnLinks` (object, required) - This is the URL to which to redirect the customer. You can customize the return URL based on the transaction status. The 'default' value is mandatory.
+    + `rel` (enum) - This is the link type, allowing different endpoints to be targeted depending on the end state of the transaction. The link relation describes how this link relates to the previous call. 
+        + default (string, required) - The default return URL that will be used if specific status return URL is not defined.
+        + on_completed (string) - Will be returned to this URL if the bank account validation request is completed.
+        + on_failed (string) - Will be returned to this URL if the bank account validation request fails.
+    + `href` - The actual URL to which the customer will be redirected.
++ `bankScheme`:`EFT` (enum, required) - This is the bank scheme for which the merchant wants to validate the account. 
+    + Members
+        + ACH
+        + EFT
++ `id`: `25f6dadf-176a-415f-95c9-6ff39ff697ba` (string) - This is the ID returned in the response. This ID can be used for future associated requests, e,g., to look up the bank account verification details. 
+    _Read Only_, _length<=36_
++ `sessionId`:`MjM5NWRlMTQtNDE4Yy0xMWU5LWIyMTAtZDY2M2JkODczZDkz` (string) - This is the encoded id that is mapped to verification id. It will be used as a reference in other API calls.
+    _Read Only, max<=255_
++ `status`:`INITIATED` (enum) - This shows the status of the bank account verification request.
+    _Read Only_
+    + Members
+        + SUCCESS - The customer has validated their bank account successfully.
+        + FAILED - The bank account validation has failed.
+        + INITIATED - The merchant has initiated the bank account verification request.
+        + INCOMPLETE -  The bank account validation could not be completed successfully, e.g., due to user inactivity or session timeout.
++ `statusMessage`:`message` (string) - This message will be returned if the *status* is FAILED or INCOMPLETE status.
+    _Read Only, length<=255_
++ Include Links Verification
++ Include Bank Scheme
+
 
 
 # Verify That the Service Is Accessible [GET /v1/monitor]
