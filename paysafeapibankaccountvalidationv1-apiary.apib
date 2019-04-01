@@ -154,6 +154,29 @@ The following request types are supported:
 |lastName           |string <br/>`length<=80`           |This is the customer’s last name. |
 |locale             |enum                               |This indicates the language of the user interface for the customer. <br/>Possible values are:<ul><li>en_CA - English</li><li>fr_CA - French</li></ul>|
 
+<a name="returnlinksobject" title="returnLinks Object"></a>
+## returnLinks
+
+|Element    |Type           |Description|
+|---        |---            |---|
+|rel        |enum           |This is the link type that allows different endpoints to be targeted depending on the end state of the transaction. Possible values are:<ul><li>default - The default return URL that will be used if specific status return URL is not defined.</li><li>on_completed - Will be returned to this URL if the payment is completed.</li><li>on_failed - Will be returned to this URL if the payment fails.</li></ul>|
+|href       |string         |This is the URI of the resource.|
+
+```apib
+{
+    "returnLinks": [{
+            "rel": "default",
+            "href": "https://mysite.com"
+        },
+        {
+            "rel": "on_failed",
+            "href": "https://US_commerce_site/payment/return/failed",
+            "method": "GET"
+        }
+    ]
+}
+```
+
 <a name="verificationsobject" title="Verifications Object"></a>
 ## Verifications
 |Element            |Type                               |Description    |
@@ -163,9 +186,8 @@ The following request types are supported:
 |merchantRefNum     |string <br/>`length<=255`          |This is the merchant reference number created by the merchant and submitted as part of the request.|
 |accountTypes       |enum                               |This is the list of bank account types that will be presented. <br/>Possible values are:<ul><li>SAVING</li><li>CHEQUING</li>/ul>|
 |currencyCodes      |array                              |This is the currency of the bank accounts that will be presented.<br>Possible values are:<ul><li>CAD</li><li>USD</li></ul>|
+|returnLinks        |[returnLinks](#returnlinksobject)         |These are links to which to redirect the customer, where applicable. |
 
-
-+ `currencyCodes`:`[CAD, USD]` (array) - This is the currency of the bank accounts that will be presented. Possible values are: CAD, USD
 + `returnLinks` (object, required) - This is the URL to which to redirect the customer. You can customize the return URL based on the transaction status. The 'default' value is mandatory.
     + `rel` (enum) - This is the link type, allowing different endpoints to be targeted depending on the end state of the transaction. The link relation describes how this link relates to the previous call. 
         + default (string, required) - The default return URL that will be used if specific status return URL is not defined.
