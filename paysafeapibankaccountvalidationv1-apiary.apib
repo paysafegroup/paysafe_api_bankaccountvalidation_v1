@@ -181,7 +181,7 @@ The following request types are supported:
 |merchantRefNum     |string <br/>`length<=255`          |This is the merchant reference number created by the merchant and submitted as part of the request.|
 |accountTypes       |enum                               |This is the list of bank account types that will be presented. <br/>Possible values are:<ul><li>SAVING</li><li>CHEQUING</li>/ul>|
 |currencyCodes      |array                              |This is the currency of the bank accounts that will be presented.<br>Possible values are:<ul><li>CAD</li><li>USD</li></ul>|
-|returnLinks        |[returnLinks](#returnlinksobject)         |These are links to which to redirect the customer, where applicable. |
+|returnLinks        |[returnLinks](#returnlinksobject)  |These are links to which to redirect the customer, where applicable. |
 
 + `returnLinks` (object, required) - This is the URL to which to redirect the customer. You can customize the return URL based on the transaction status. The 'default' value is mandatory.
     + `rel` (enum) - This is the link type, allowing different endpoints to be targeted depending on the end state of the transaction. The link relation describes how this link relates to the previous call. 
