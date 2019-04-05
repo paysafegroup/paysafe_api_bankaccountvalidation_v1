@@ -187,7 +187,7 @@ The following request types are supported:
 |profile            |[profile](#profileobject)          |This is the some profile information about the customer.|
 |bankscheme         |enum                               |This is the bank scheme for which the merchant wants to validate the account.<br/>Possible values are:<ul><li>[ACH](#achbankaccountobject)</li><li>[EFT](#eftbankaccountobject)</li></ul>|
 |merchantRefNum     |string <br/>`length<=255`          |This is the merchant reference number created by the merchant and submitted as part of the request.|
-|accountTypes       |enum                               |This is the list of bank account types that will be presented. <br/>Possible values are:<ul><li>SAVING</li><li>CHEQUING</li>/ul>|
+|accountTypes       |enum                               |This is the list of bank account types that will be presented. <br/>Possible values are:<ul><li>SAVING</li><li>CHEQUING</li></ul>|
 |currencyCodes      |array                              |This is the currency of the bank accounts that will be presented.<br>Possible values are:<ul><li>CAD</li><li>USD</li></ul>|
 |returnLinks        |[returnLinks](#returnlinksobject)  |These are links to which to redirect the customer, where applicable. |
 |links              |[links](#linksobject)              |This is an array of links related to the resource.|
@@ -324,7 +324,9 @@ This response notifies you that the customer successfully verified their bank ac
 Click on **Get Verification** above to see how to look up a Verification request using the ID returned in the response to the original Create a Verification request.
 
 The response to the Get Verification request will include the customer's bank account details, including a single-use *paymentToken* that is valid for 15 minutes. 
-You can use this  payment token to [process a Standalone Credit using the Paysafe Direct Debit API](https://developer.paysafe.com/en/direct-debit/api/#/reference/0/standalone-credits).
+You can use this  payment token for several request types in the Paysafe APIs, including:
+ * [Process a Standalone Credit using the Paysafe Direct Debit API](https://developer.paysafe.com/en/direct-debit/api/#/reference/0/standalone-credits) to complete the customer's request to cash out to their bank account 
+ * [Create a permanent payment token in the Customer Vault API](https://developer.paysafe.com/en/vault/api/#/reference/0/bacs-bank-accounts/create-an-eft-bank-account-using-a-single-use-token) that you can then use repeatedly to process requests in the Direct Debit API
 
 + Parameters
 
