@@ -3,15 +3,6 @@ HOST: https://api.test.paysafe.com/bankaccountvalidator/
 
 # Paysafe Bank Account Validation API
 
-# QUESTIONS
-* In the "Final Response", if status=SUCCESS, will there be a statusMessage (as in Confluence example)?
-* *nickName* is listed as part of the eft/ach objects, but in the response examples it is not included. Is nickName actually used?
-* *accountNumber* is included as part of both bank objects, but shouldn't only *lastDigits* be included?
-* need to include test values so that flow will work in Test environment for merchants (for Flare content).
-
-
-
-
 # Release Notes
 
 | Version   | Date          | Details |
@@ -396,10 +387,6 @@ You can use this  payment token to [process a Standalone Credit using the Paysaf
     _Read Only_
 
         + Properties
-            + `nickName`:`Jane account` (string) - This is an alias defined by the customer for the bank account (e.g., "First Bank account").
-                _length<=50_
-            + `accountNumber`:`123456789` (string) - This is the bank account number.
-                _length=4-12_
             + `accountHolderName`:`Jane Smith` (string) - This is the account holder's name.
                 _length<=30_
             + `routingNumber`:`123456789` (string) - This is the 9-digit routing number of the customer’s bank account.
@@ -416,10 +403,6 @@ You can use this  payment token to [process a Standalone Credit using the Paysaf
     _Read Only_
 
         + Properties
-            + `nickName`:`Jane account` (string) - This is an alias defined by the customer for the bank account (e.g., "First Bank account").
-                _length<=50_
-            + `accountNumber`:`123456789` (string) - This is the bank account number.
-                _length=4-12_
             + `accountHolderName`:`Jane Smith` (string) - This is the account holder's name.
                 _length<=30_
             + `institutionId`:`123` (string) - This is the 3-digit institution ID of the customer’s bank branch.
