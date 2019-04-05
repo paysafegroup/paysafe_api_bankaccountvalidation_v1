@@ -185,7 +185,7 @@ The following request types are supported:
 |Element            |Type                               |Description    |
 |---                |---                                |---            |
 |profile            |[profile](#profileobject)          |This is the some profile information about the customer.|
-|bankscheme         |enum                               |This is the bank scheme for which the merchant wants to validate the account.<br/>Possible values are:<ul><li>[ACH](#achbankaccountobject)</li><li>[EFT](#eftbankaccountobject)</li></ul>|
+|bankScheme         |enum                               |This is the bank scheme for which the merchant wants to validate the account.<br/>Possible values are:<ul><li>[ACH](#achbankaccountobject)</li><li>[EFT](#eftbankaccountobject)</li></ul>|
 |merchantRefNum     |string <br/>`length<=255`          |This is the merchant reference number created by the merchant and submitted as part of the request.|
 |accountTypes       |enum                               |This is the list of bank account types that will be presented. <br/>Possible values are:<ul><li>SAVING</li><li>CHEQUING</li></ul>|
 |currencyCodes      |array                              |This is the currency of the bank accounts that will be presented.<br>Possible values are:<ul><li>CAD</li><li>USD</li></ul>|
@@ -254,7 +254,7 @@ Click on **Create a Verification** above to see how to send a bank account verif
                     "rel": "default",
                     "href": "https://mysite.com/return"
                 }],
-                "bankscheme": "EFT"
+                "bankScheme": "EFT"
             }
 
 + Response 201 (application/json)
@@ -281,7 +281,7 @@ Click on **Create a Verification** above to see how to send a bank account verif
                     "rel": "default",
                     "href": "https://mysite.com/return"
                 }],
-                "bankscheme": "ACH",
+                "bankScheme": "ACH",
                 "id": "6a275b7c-6f11-4ed1-ae77-21071724574a",
                 "sessionId": "MjM5NWRlMTQtNDE4Yy0xMWU5LWIyMTAtZDY2M2JkODczZDkz",
                 "status": "INITIATED",
