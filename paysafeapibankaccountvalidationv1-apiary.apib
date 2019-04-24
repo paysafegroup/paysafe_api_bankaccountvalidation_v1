@@ -162,6 +162,15 @@ The following request types are supported:
 |lastName           |string <br/>`length<=80`           |This is the customer’s last name. |
 |locale             |enum                               |This indicates the language of the user interface for the customer. <br/>Possible values are:<ul><li>en_CA - English</li><li>fr_CA - French</li></ul>|
 
+```apib
+            {
+                "firstName": "Jane",
+                "middleName" : "Mary",
+                "lastName" : "Smyth",
+                "locale": "en_CA"
+            }
+```
+
 <a name="returnlinksobject" title="returnLinks Object"></a>
 ## returnLinks
 
@@ -197,6 +206,31 @@ The following request types are supported:
 |status             |enum                               |This is the status of the bank account verification request.<br/>Possible values are:<ul><li>SUCCESS - The customer has validated their bank account successfully.</li><li>FAILED - The bank account validation has failed.</li><li>INITIATED - The merchant has initiated the bank account verification request.</li><li>INCOMPLETE -  The bank account validation could not be completed successfully, e.g., due to user inactivity or session timeout.</li></ul>|
 |statusMessage      |string<br/>`length<=255`           |This message will be returned if the *status* is FAILED or INCOMPLETE.
 
+
+```apib
+            {
+                "merchantRefNum": "1323563",
+                "profile": {
+                    "firstName": "Jane",
+                    "middleName": "Mary",
+                    "lastName": "Smythe",
+                    "locale": "en_CA"
+                },
+                "accountTypes": [
+                    "SAVING",
+                    "CHEQUING"
+                ],
+                "currencyCodes": [
+                    "CAD",
+                    "USD"
+                ],
+                "returnLinks": [{
+                    "rel": "default",
+                    "href": "https://mysite.com/return"
+                }],
+                "bankScheme": "EFT"
+            }
+```
 
 # Verify That the Service Is Accessible [GET /v1/monitor]
 <a name="verifyservice" title="Verify Service"></a>
@@ -291,7 +325,7 @@ Click on **Create a Verification** above to see how to send a bank account verif
                 }]
             }
 
-## Redirect the Customer [GET /v1/redirect?{session_id}]
+## Redirect the Customer [GET /v1/redirect?sessionId={sessionId}]
 <a name="redirectionrequest" title="Customer Redirection Request"></a>
 
 Click on **Redirect the Customer** above to see how to redirect a customer so they can validate their bank account details.
@@ -301,7 +335,7 @@ Click on **Redirect the Customer** above to see how to redirect a customer so th
 
 + Parameters
 
-    + session_id:`MmM2OGNiNWMtMWNmYS0xMWU5LWFiMTQtZDY2M2JkODczZDkz` (string, required) - This is the *sessionId* returned in the response to the bank account verification request.
+    + sessionId:`MmM2OGNiNWMtMWNmYS0xMWU5LWFiMTQtZDY2M2JkODczZDkz` (string, required) - This is the *sessionId* returned in the response to the bank account verification request.
 
 + Request Initiate a Customer Redirect Request
 
@@ -326,7 +360,7 @@ Click on **Get Verification** above to see how to look up a Verification request
 The response to the Get Verification request will include the customer's bank account details, including a single-use *paymentToken* that is valid for 15 minutes. 
 You can use this  payment token for several request types in the Paysafe APIs, including:
  * [Process a Standalone Credit using the Paysafe Direct Debit API](https://developer.paysafe.com/en/direct-debit/api/#/reference/0/standalone-credits) to complete the customer's request to cash out to their bank account 
- * [Create a permanent payment token in the Customer Vault API](https://developer.paysafe.com/en/vault/api/#/reference/0/bacs-bank-accounts/create-an-eft-bank-account-using-a-single-use-token) that you can then use repeatedly to process requests in the Direct Debit API
+ * [Create a permanent payment token in the Customer Vault API](https://developer.paysafe.com/en/vault/api/#/reference/0/eft-bank-accounts/create-an-eft-bank-account-using-a-single-use-token) that you can then use repeatedly to process requests in the Direct Debit API
 
 + Parameters
 
