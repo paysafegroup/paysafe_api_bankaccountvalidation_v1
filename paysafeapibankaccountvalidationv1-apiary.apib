@@ -205,7 +205,7 @@ The following request types are supported:
 |eft \| ach         |[eft](#eftbankaccountobject) \| [ach](#achbankaccountobject) | These are bank account details.|
 |status             |enum                               |This is the status of the bank account verification request.<br/>Possible values are:<ul><li>SUCCESS - The customer has validated their bank account successfully.</li><li>FAILED - The bank account validation has failed.</li><li>INITIATED - The merchant has initiated the bank account verification request.</li><li>INCOMPLETE -  The bank account validation could not be completed successfully, e.g., due to user inactivity or session timeout.</li></ul>|
 |statusMessage      |string<br/>`length<=255`           |This message will be returned if the *status* is FAILED or INCOMPLETE.
-
+|metadata           |Map<String, String>                |The information passed in this field in the request will be exactly echoed in the response. |
 
 ```apib
             {
